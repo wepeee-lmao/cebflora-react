@@ -1,0 +1,120 @@
+/* Auth pages: login, signup toggle, verify-email, forgot-password */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 24px;
+}
+
+.return-home {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: rgba(255,255,255,0.08);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.auth-card {
+  background: var(--color-bg-green);
+  border: 1px solid var(--color-accent-yellow);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.auth-card .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.auth-tabs {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--font-sans);
+}
+
+.auth-tabs button.active {
+  background: var(--color-card-bg);
+  color: var(--color-bg-dark);
+}
+
+.auth-tabs button:not(.active) {
+  background: #0d1810;
+  color: var(--color-text-light);
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.checkbox-row a { color: var(--color-accent-yellow); text-decoration: underline; }
+
+.otp-input {
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  color: var(--color-text-light);
+  margin-bottom: 16px;
+}
+
+.status-banner {
+  background: rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(255,255,255,0.08);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(255,255,255,0.08);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
