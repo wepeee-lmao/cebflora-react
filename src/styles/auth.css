@@ -1,54 +1,129 @@
-/* Auth pages: login, signup toggle, verify-email, forgot-password */
+
+@keyframes formIn {
+   0% { 
+    opacity: 0;
+    transform: translateY(10px); 
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0px); 
+}
+
+}
+
+@property --a {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to { --a: 360deg; }
+}
+
+.auth-form {
+  animation: formSwitch 0.5s ease both;
+}
+
+@keyframes formSwitch {
+  from { opacity: 0; transform: translateX(var(--shift, 34px)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.auth-form--signin { --shift: -34px; }
+.auth-form--signup { --shift: 34px; }
 
 .auth-page {
+  background-image: url('../assets/images/bglogin.svg');
   min-height: 100vh;
   display: flex;
+  font-family: var(--font-mont);
   align-items: center;
   justify-content: center;
   position: relative;
   padding: 24px;
 }
+.auth-page a:hover{
+   transition-timing-function: ease-in-out;
+    color: var(--color-accent-olive);
+    transition: .4s;
+    text-decoration: underline;
+    transform: scale(1.05);
+}
 
+.auth-card .brand {
+  justify-content: left;   
+  gap: 10px;              
+  margin-bottom: 24px;      
+}
 .return-home {
   position: absolute;
+  font-weight: 600;
   top: 24px;
   left: 24px;
-  background: rgba(255,255,255,0.08);
   padding: 10px 16px;
   border-radius: 8px;
   font-size: 0.85rem;
 }
 
+
 .auth-card {
-  background: var(--color-bg-green);
-  border: 1px solid var(--color-accent-yellow);
+  border: 3px solid transparent; 
   border-radius: 20px;
-  padding: 40px;
+  box-shadow: 0 10px 30px rgba(208, 222, 205, 0.5);
+  padding: 45px;
   width: 100%;
-  max-width: 460px;
+  text-align: justify;
+  animation: formIn 0.35s ease both, spin-border 3s linear infinite;
+  max-width: 480px;
+  background:
+    linear-gradient(var(--color-bg-green), var(--color-bg-green)) padding-box,
+    conic-gradient(from var(--a), rgb(252, 231, 0), rgb(252, 231, 0), rgb(142, 249, 41), rgb(188, 251, 0)) border-box;
 }
 
-.auth-card .brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
-}
 
+.verify1{
+  position: relative;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: var(--color-accent-ygreen);
+}
+.verify2{
+  position:relative;
+  color: var(--color-accent-yellow);
+  bottom: 19px;
+  letter-spacing: 1px;
+  font-size: 1.8rem;
+}
+.verify3{
+  position:relative;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  bottom: 30px;
+
+}
 .auth-tabs {
   display: flex;
   border-radius: 8px;
+  top: 10px;
   overflow: hidden;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .auth-tabs button {
+  font-family: var(--font-sans);
+  font-weight: 800px;
   flex: 1;
-  padding: 12px;
+  padding: 10px;
   border: none;
   cursor: pointer;
   font-weight: 700;
-  font-family: var(--font-sans);
+}
+
+.auth-tabs button {
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  
 }
 
 .auth-tabs button.active {
@@ -58,63 +133,112 @@
 
 .auth-tabs button:not(.active) {
   background: #0d1810;
-  color: var(--color-text-light);
+  color: var(--color-accent-ygreen);
 }
 
 .checkbox-row {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 0.85rem;
   color: var(--color-text-muted);
 }
 
-.checkbox-row a { color: var(--color-accent-yellow); text-decoration: underline; }
+.checkbox-row a {
+   color: var(--color-accent-yellow); 
+   text-decoration: underline; 
+}
 
-.otp-input {
-  width: 100%;
-  padding: 16px;
+.container{
+    width: 100%;
+    background: rgba(11, 39, 10, 0.9);
+    display: flex;
+    align-items: center;
+    z-index: auto;
+    justify-content: center;
+}
+
+.popup{
+  width: min(700px, 95vw);  
+  height: auto;              
+  max-height: 85dvh;          
+  overflow-y: auto;          
+
+  position: fixed;            
+  z-index: 100;  
+  top: 50%;
+  left: 50%;
+
+  border-radius: 1px;
+  border: 2px solid;
+  border-radius: 6px;
+  background: rgba(11, 39, 10, 0.95);
+  color: rgb(200, 193, 193);
+  transform: translate(-50%, -50%) scale(0.1);
   text-align: center;
+  padding: 0 20px 20px;
+  visibility: hidden;
+}
+
+.open-popup{
+   visibility: visible;
+   top: 30%;
+   overflow:hidden;
+   transition: transform 0.5s ease;
+   transform: translate(-50%, -50%) scale(1);
+}
+.popup h2{
   font-size: 1.5rem;
+  padding: 10px;
+  color: var(--color-accent-ygreen);
+  font-family: var(--font-mont);
+  margin: 30px 0 10px;
+}
+.popup h3{
+  font-size: 1rem;
+  font-weight: 100px;
+  text-align:justify;
+  color: white;
+  font-family: var(--font-sans);
+  padding: 30px;
+  margin: 40px 0 40px;
+}
+.popup button{
+  position: relative;
+  width: 200px;
+  margin-top: 230px;
+  padding: 10px 0;
+  font-family: var(--font-mont);
+  font-weight: 700;
+  background: var(--color-accent-yellow);
+  color: rgb(0, 0, 0);
+  border: 2px;
+  outline:rgb(0, 0, 0);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: #0d1810;
+}
+.popup button:hover
+{
+  background: yellowgreen;
+}
+
+.otp-loc{
+  position: relative;
+  bottom:10px;
+}
+.otp-input {
+  position:relative;
+  width: 100%;
+  height: 60px;
+  padding: 20px;
+  text-align: center;
   letter-spacing: 12px;
   border-radius: 6px;
+  font-weight: 600;
   border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(255,255,255,0.06);
   color: var(--color-text-light);
-  margin-bottom: 16px;
+  top: 5px;
 }
 
-.status-banner {
-  background: rgba(255,255,255,0.06);
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-size: 0.8rem;
-  margin-bottom: 20px;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  border-radius: inherit;
-  background: rgba(255,255,255,0.08);
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background: rgba(255,255,255,0.08);
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}

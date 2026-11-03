@@ -5,11 +5,6 @@
 --             BR-01 through BR-09
 -- ============================================================
 
--- ------------------------------------------------------------
--- 1. PROFILES  (extends Supabase's built-in auth.users)
--- ------------------------------------------------------------
--- role: 'user' (default, read-only) | 'curator' | 'admin'
--- BR-01: only curator/admin may write plant records
 create table profiles (
   id uuid references auth.users(id) on delete cascade primary key,
   full_name text not null,
@@ -20,7 +15,6 @@ create table profiles (
   created_at timestamptz not null default now()
 );
 
--- Auto-create a profile row whenever someone signs up via Supabase Auth
 create function handle_new_user()
 returns trigger as $$
 begin

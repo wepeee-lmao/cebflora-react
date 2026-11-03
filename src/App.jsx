@@ -3,9 +3,11 @@ import ProtectedRoute from './components/ProtectedRoute';
 import DashboardLayout from './components/DashboardLayout';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
-// import VerifyEmail from './pages/VerifyEmail';
+import VerifyEmail from './pages/VerifyEmail';
 import Dashboard from './pages/Dashboard';
-// import ComingSoon from './pages/ComingSoon';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import ComingSoon from './pages/ComingSoon';
 
 export default function App() {
   return (
@@ -14,7 +16,10 @@ export default function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-email" element={<VerifyEmail />} />
-      <Route path="/forgot-password" element={<ComingSoon title="Forgot password" />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/coming-soon" element={<ComingSoon />} />
+
 
       {/* Signed-in users (any role) */}
       <Route element={<ProtectedRoute />}>
@@ -44,7 +49,7 @@ export default function App() {
         </Route>
       </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<h1 style={{ color: 'white' }}>No route for this URL</h1>} />
     </Routes>
   );
 }

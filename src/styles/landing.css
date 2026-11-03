@@ -9,8 +9,8 @@
     transform: translateY(0); 
 }
 }
-
 .hero {
+
   min-height: 90dvh;
   display: flex;
   align-items: center;
@@ -19,7 +19,6 @@
   animation-duration: 4s;
 }
 
-/*landingpage textalign*/
 .hero-content { 
   max-width: 80dvh; 
   margin-left: auto;
@@ -54,26 +53,26 @@
     transform: translateY(30px);
   }
 
-  .navbar .brand {
+  .brand {
     display: flex;
     align-items: center;
   }
   
 
-  .navbar .brand-logo {
+  .brand-logo {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     background: url('../assets/icons/ceblogo.png') no-repeat center / contain;
   }
 
-  .navbar .brand-name {
+  .brand-name {
     font-family: var(--font-serif);
     font-size: var(--font-size-15rem);
     transform: translateX(7%);
   }
 
-  .navbar .brand-tagline {
+  .brand-tagline {
     font-size: var(--font-size-07rem);
     font-family: var(--font-sans);
     font-weight: 600;
@@ -82,7 +81,7 @@
     display: block;
   }
 
-  .navbar .wrapper{
+  .wrapper{
     display: flex;
     align-items: right;
   }
@@ -95,6 +94,8 @@
   }
 
   .navbar .nav-actions{
+    position: relative;
+    left: 75px;
     color: var(--color-accent-yellow);
     font-size: var(--font-size-15rem);
     font-weight: 600; 
@@ -209,7 +210,7 @@
 }
 .frame-search{
   aspect-ratio: 6/7;
-  background-image: url('../assets/images/landp1.png') ;
+  background-image: url('../assets/images/landp1.svg') ;
 }
 
 .loc2{
@@ -242,10 +243,11 @@
 }
 .frame-learn{
   aspect-ratio: 7/7;
-  background-image: url('../assets/images/landp2.png');}
+  background-image: url('../assets/images/landp2.svg');}
+
 .loc3{
   position:relative;
-  top: -50px;
+  top: -90px;
   left: 20px;
   transition-timing-function: all ease-in-out;
   transition: .4s;
@@ -278,7 +280,7 @@
 }
 .frame-save{
   aspect-ratio: 7/7;
-  background-image: url('../assets/images/landp3.png');
+  background-image: url('../assets/images/landp3.svg');
 }
 .card-image-frame{
   width: 100%;
@@ -291,8 +293,11 @@
 .section2
 { 
   background: rgba(13, 22, 18, 0.8);
-  padding: 40px 48px;
+  padding: 55px 48px; 
   min-height: 90dvh;
+  /* flex-wrap: auto; */
+  position: relative;
+  overflow: hidden;
 }
 .h2-secmain{
   position:relative;
@@ -341,8 +346,6 @@
   left: -10px;
 }
 /* --------------------------------------------------------- */
-
-
 .card-image-frame2{
   border-radius: var(--radius);
   background-size:contain;
@@ -352,29 +355,38 @@
 
 .h2loc{
   position: relative;
-  left: 100px;
+  left: 140px;
+  top: 40px;
   display: flex;
+  gap: 150px;
   box-sizing: border-box;
-  text-align: right;
+  text-align: left;
 }
 .fstyle1{
   position: relative;
-  top: 330px;
-  left: 215px;
+  top: 300px;
+  left: 200px;
   font-family: var(--font-sans);
   letter-spacing: 5px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 750;
   box-sizing: border-box;
   transform: rotate(70deg);
-  color: white;
+   text-shadow:
+    0 0 1px#0a1304,
+    0 0 1px #c5f79d,
+    0 0 1px #c5f79d,
+    0 0 10px #d8f6bf,
+    0 0 1px #d8f6bf,
+    0 0 1px #0a1304,
+    0 0 1px #d8f6bf;
 }
 .frame1{
   position: relative;
   aspect-ratio: 7/5;
-  top: 20px;
+  top: 50px;
   left: 70px;
-  width: 140%;
+  width: 130%;
   background-image: url('../assets/images/landp4.png');
 }
 
@@ -383,53 +395,219 @@
    color: var(--color-accent-yellow);
    font-family: var(--font-serif);
    font-weight: 600;
-   font-size: 4.5rem;
+   font-size: 5rem;
 }
 .sub{
    position: relative;
-   color: white;
    top:-20px;
+   left: 300px;
+   width: 300px;
    font-family: var(--font-sans);
    font-weight: 600;
+   color: var(--color-accent-ygreen);
    font-size: 2rem;
+   font-weight: 700;
+   text-align: right;
+   letter-spacing: 8px;
 }
 .fstyle2{
   position: relative;
-  left: 275px;
+  left: 240px;
   top: -10px;
   font-family: var(--font-sans);
   font-size: 1.5rem;
   letter-spacing: 4px;
   font-weight: 750;
-  color: white;
+   text-shadow:
+    0 0 1px#0a1304,
+    0 0 1px #c5f79d,
+    0 0 1px #c5f79d,
+    0 0 10px #d8f6bf,
+    0 0 1px #d8f6bf,
+    0 0 1px #0a1304,
+    0 0 1px #d8f6bf;
 }
 .frame2{
   position: relative;
-  top: -200px;
-  left: 200px;
-  width: 170%;
+  bottom: 150px;
+  left: 250px;
+  width: 160%;
   aspect-ratio: 7/7;
   background-image: url('../assets/images/landp5.png');
 }
+
 .fstyle3{
-  position: relative;
+  position: absolute;
   transform: rotate(270deg);
-  /* box-sizing: border-box; */
-  left: -1200px;
-  letter-spacing: 4px;
-  color: white;
+  white-space: nowrap;
+  width: max-content;
+  font-size: 1.5rem;
+  left: -400px;
+  top: 120px;
+  letter-spacing: 7px;
+  text-shadow:
+    0 0 1px#0a1304,
+    0 0 1px #92ff39,
+    0 0 1px #92ff39,
+    0 0 10px #92ff39,
+    0 0 1px #c5f79d,
+    0 0 1px #0a1304,
+    0 0 1px#c5f79d;
+}
+
+.v-line {
+  position: absolute;    
+  top: 260px;              
+  left: 140px;             
+  width: 3px;           
+  height: 600px;          
+  background: #c9e255;    
+  border-radius: 2px;
 }
 
 /* --------------------------------------------------------- */
+
+.section4{
+  padding: 120px 10px;
+  min-height: 20dvh;
+  text-align: center;
+}
+
+.floc{
+  position: relative;
+  text-align: center;
+}
+.fstyle{
+  color: var(--color-accent-ygreen);
+  font-size: 2rem;
+  font-family: var(--font-serif);
+}
+
+.pstyle{
+  position: relative;
+  bottom: 30px;
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  font-family: var(--font-serif);
+}
+
+/* --------------------------------------------------------- */
+
 footer {
-  background: #0a1a0e;
-  padding: 48px;
+  background: #041706;
+  padding: 48px 80px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  flex-wrap:wrap;
   justify-content: space-between;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
+footer .footer-col h4 
+{ 
+  color: var(--color-accent-ygreen); 
+  margin-bottom: 10px; 
+}
 
-footer .footer-col h4 { color: var(--color-text-light); margin-bottom: 12px; }
-footer .footer-col a { display: block; color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 8px; }
+footer .footer-col a{ 
+  display: block; 
+  color: var(--color-text-muted); 
+  margin-bottom: 8px; 
+}
+footer .footer-bottom {
+  position: relative;
+  flex: 0 0 100%;   
+  top: 30px;                      
+  border-top: 1px solid rgba(255,255,255,1); 
+  padding-top: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+}
+
+footer .brand{
+    justify-content: center;   
+    gap: 2px;         
+    margin-top: 30px;  
+}
+
+
+/* ----------------------NOTFINAL;DO NOT ALTER AS OF NOW----------------------------------- */
+
+
+@media (max-width: 768px) {
+
+  /* ---------- navbar + hero ---------- */
+  .navbar { padding: 40px 25px; transform: none; }
+  .brand-logo { width: 44px; height: 44px; }
+  .brand-name { font-size: 1.1rem; }
+  .brand-tagline { font-size: 0.6rem; }
+  .p { transform: none; font-size: 0.75rem; }
+
+  .hero { padding: 0 24px; min-height: 80dvh; }
+  .hero-content { max-width: 100%; margin: 0 auto; text-align: center; transform: none; }
+  /* .hero h1 { transform: none; font-size: clamp(2rem, 9vw, 3rem); } */
+  .hero p { font-size: 1rem; }
+
+  /* ---------- "How CebFlora Works" cards ---------- */
+  .section1 { padding: 20px; min-height: auto; }
+  .h2-how { font-size: 2rem; top: 0; left: 0; }
+  .h2-ex  { top: 0; left: 0; }
+
+  .trust-cards {
+    grid-template-columns: 1fr;   /* one card per row */
+    gap: 32px;
+    left: 0;
+  }
+
+  /* cancel every desktop offset */
+  .loc1, .loc2, .loc3,
+  .num-01, .num-02, .num-03,
+  .wrapper-search, .wrapper-learn, .wrapper-save,
+  .p-search, .p-learn, .p-save {
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+  .p-search, .p-learn, .p-save { padding: 0 12px; }
+
+  /* flex column so every card has the same order: number, title, image, text */
+  .loc { display: flex; flex-direction: column; }
+  .loc .h4 { order: 1; }
+  .loc h3 { order: 2; }
+  .loc .card-image-frame { order: 3; }
+  .loc p { order: 4; }
+
+  /* phones have no hover, so show the text without needing a tap */
+  .p-search > span, .p-learn > span, .p-save > span {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- "Rooted in Trust" + "Fully Experience" ---------- */
+  .section2 { padding: 40px 20px; min-height: auto; }
+  .h2-secmain, .p-secmain, .pos { top: 0; left: 0; }
+  .trust-card { left: 0; }
+
+  .h2loc { left: 0; top: 0; gap: 0; }
+  .sec3 { font-size: clamp(2.5rem, 12vw, 3.5rem); }
+  .sub { top: 0; left: 0; width: auto; font-size: 1.1rem; letter-spacing: 3px; text-align: left; }
+
+  .frame1, .frame2 { top: 0; bottom: 0; left: 0; width: 100%; }
+  .fstyle1, .fstyle2 {
+    position: absolute;
+    top: auto; left: 12px; bottom: 12px;
+    transform: none;
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  /* decorative vertical text and line don't fit on a phone */
+  .fstyle3, .v-line { display: none; }
+
+  /* ---------- footer ---------- */
+  footer { padding: 32px 24px; gap: 28px; }
+  footer .footer-col { flex: 1 1 140px; }          /* two columns per row */
+  footer .footer-col:first-child { flex: 0 0 100%; }  /* logo gets its own row */
+  footer .footer-bottom { top: 0; }
+}

@@ -5,7 +5,9 @@
   --color-bg-green: #14251a;
   --color-accent-lime: #b5e28c;
   --color-accent-olive: #bec442;
-  --color-accent-yellow: #f5c451;
+  --color-accent-ygreen:#c9e265;
+  --color-accent-yellow: #ffde59;
+  --color-accent-dyellow: #ffbd59;
   --color-text-light: #f4f4ef;
   --color-text-muted: #a9b8a5;
   --color-card-bg: #eeeee6;
@@ -19,6 +21,7 @@
   --font-size-15rem: clamp(1.2rem, calc(0.6rem + 1.1vw), 1.5rem); 
   --font-size-07rem: clamp(0.7rem, calc(0.59rem + 0.55vw), 1rem);
   --font-size-12rem: clamp(1rem, calc(0.93rem + 0.364vw), 1.2rem);
+  --font-size-4rem: clamp(4rem, calc(1.07rem + 5.64vw), 5.3rem);
 }
 
 * { box-sizing: border-box; }
@@ -30,7 +33,7 @@ body {
   width: 100%;
   scroll-behavior: smooth;
   font-family: var(--font-sans);
-  background:  url('../assets/images/coverpage.png') no-repeat center center fixed;
+  background:  url('../assets/images/coverpage.svg') no-repeat center center fixed;
   background-size: cover;
   color: var(--color-text-light);
   line-height: 1.5;
@@ -114,8 +117,6 @@ p {
   font-family: var(--font-serif);
   transform: translateY(20%);
 }
-
-
 .btn-primary{
   background-color: rgba(113, 145, 106, 0.4);
   color: var(--color-text-light);
@@ -132,11 +133,37 @@ p {
 }
 
 .btn-solid-yellow {
+  position: relative;
+  overflow: hidden;
+  bottom: 5px;
+  isolation: isolate;
+  font-size: 1.2rem;
+  font-family: var(--font-mont);
+  font-weight: 900;
   background: var(--color-accent-yellow);
   color: var(--color-bg-dark);
   width: 100%;
-  padding: 14px;
+  z-index: auto;
+  padding: 13px;
 }
+
+.btn-solid-yellow::before {
+  content: '';                         
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  transform: translateX(-50%);
+  background: var(--color-accent-olive);
+  z-index: -1;                        
+  transition: width 0.4s ease-in-out; 
+}
+
+.btn-solid-yellow:hover::before {     
+  width: 100%;
+}
+
 
 .btn-ghost {
   background: transparent;
@@ -157,6 +184,7 @@ input[type="password"] {
   width: 100%;
   padding: 12px 14px;
   border-radius: 6px;
+  font-family: var(--font-mont);
   border: 1px solid rgba(255,255,255,0.15);
   background: rgba(255,255,255,0.06);
   color: var(--color-text-light);
@@ -180,7 +208,8 @@ input::placeholder { color: var(--color-text-muted); }
   font-size: 0.85rem;
   color: var(--color-text-muted);
   text-align: center;
-  margin-top: 16px;
+  margin-left: 10px;
+  margin-top: 30px;
 }
 
 .form-note a {

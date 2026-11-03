@@ -4,12 +4,6 @@ import { useAuth } from '../context/AuthContext';
 export default function Dashboard() {
   const { profile } = useAuth();
 
-  // FR-05 / UR-03: first-time tutorial hook — wire your tutorial library here
-  // if (!profile.has_seen_tutorial) {
-  //   show onboarding overlay, then:
-  //   await supabase.from('profiles').update({ has_seen_tutorial: true }).eq('id', profile.id);
-  // }
-
   return (
     <>
       <h2>

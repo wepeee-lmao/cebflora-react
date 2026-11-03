@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Brand from './Brand';
-
+import '../styles/landing.css';
+import '../styles/style.css';
 export default function Footer() {
   return (
     <footer>
@@ -25,6 +26,7 @@ export default function Footer() {
         <Link to="/login">Create account</Link>
         <a href="#">Contact us</a>
       </div>
+       <div className="footer-bottom"> © 2026 CebFlora • Cebu City, Philippines</div>
     </footer>
   );
 }

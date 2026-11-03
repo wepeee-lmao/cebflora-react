@@ -27,7 +27,7 @@ export default function Landing() {
       </section>
 
       <section className="section1">
-        <h2 className="h2 h2-how">How CebFlora Works</h2>
+        <h2 className="h2 h2-how">HOW CEBFLORA WORKS</h2>
         <div>
           <h2 className="h2 h2-ex">Explore.Learn.Grow</h2>
         </div>
@@ -82,31 +82,35 @@ export default function Landing() {
             <p>Only general ecological zones are shown, never exact GPS, to keep rare and endangered plants safe.</p>
           </div>
         </div>
-      </section>
+      </section> 
 
-      <section className="section2">
-        <div className="h2loc">
-          <h2 className="sec3">
-            Fully <br />Experience<br />
-            <span className="sub">The Digital Herbarium</span>
+        <section className="section2">
+          <h2 className="sec3 h2loc">
+            FULLY <br />EXPERIENCE<br />
+            <span className="sub">THE DIGITAL HERBARIUM</span>
           </h2>
-        </div>
-        <div className="trust-cards">
-          <div className="card-image-frame2 frame1">
-            <h3 className="fstyle1">IN YOUR SMARTPHONE</h3>
+          <div className="trust-cards">
+            <div className="card-image-frame2 frame1">
+              <h3 className="fstyle1">ON YOUR SMARTPHONE</h3>
+            </div>
+            <div className="card-image-frame2 frame2">
+              <h3 className="fstyle2">ON YOUR DESKTOP</h3>
+            </div>
+            <div>
+              <h3 className="fstyle3">BROWSE  ⑉ FILTER  ⑉ VIEW PLANT RECORDS ANYTIME</h3>
+            </div>
           </div>
-          <div className="card-image-frame2 frame2">
-            <h3 className="fstyle2">IN YOUR DESKTOP</h3>
-          </div>
-          <div>
-            <h3 className="fstyle3">BROWSE  ⑉ FILTER  ⑉ VIEW PLANT RECORDS ANYTIME</h3>
-          </div>
-        </div>
-      </section>
+            <div className="v-line">
+            </div>
+        </section>
 
-      <section className="section text-center">
-        <h2>Your journey begins now.</h2>
-        <p style={{ color: 'var(--color-text-muted)' }}>Join locals in discovering and managing new plant records.</p>
+      <section className="section4">
+        <div className="floc">
+          <div className="fstyle">
+            <h2>Your journey begins now.</h2> 
+          </div>
+          <p className="pstyle">Join locals in discovering and managing new plant records.</p>
+        </div>
         <Link to="/login" className="btn btn-primary">Create an account &rarr;</Link>
       </section>
 

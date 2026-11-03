@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import Brand from '../components/Brand';
 import usePageTitle from '../lib/usePageTitle';
+import '../styles/style.css';
 import '../styles/auth.css';
 
 export default function Login() {
@@ -72,13 +73,17 @@ export default function Login() {
       navigate('/dashboard');
     } else {
       sessionStorage.setItem('pending_verification_email', email);
-      navigate('/verify-email');
+      sessionStorage.setItem('verification_flow', 'signup');
     }
   };
 
+  
+  const [agree, setagree]= useState(false);
+  const [show, setshow]=useState(false);
+
   return (
     <div className="auth-page">
-      <Link to="/" className="return-home">&larr; Return to Homepage</Link>
+      <Link to="/" className="return-home"> Return to Homepage</Link>
 
       <div className="auth-card">
         <Brand />
@@ -91,7 +96,7 @@ export default function Login() {
             Create account
           </button>
         </div>
-
+        <div className={`auth-form auth-form--${tab}`} key={tab}>
         {tab === 'signin' ? (
           <>
             <form onSubmit={handleSignin}>
@@ -116,8 +121,7 @@ export default function Login() {
               </button>
             </form>
             <p className="form-note">
-              <Link to="/forgot-password">Forgot password?</Link><br /><br />
-              New to CebFlora? <a href="#" onClick={(e) => showTab(e, 'signup')}>Create one</a>
+              Forgot password? <Link to="/forgot-password">  Click Here</Link>
             </p>
           </>
         ) : (
@@ -152,24 +156,32 @@ export default function Login() {
               />
 
               <div className="checkbox-row">
-                <input type="checkbox" id="signup-terms" required style={{ marginTop: 3 }} />
-                <label htmlFor="signup-terms" style={{ margin: 0, fontWeight: 400 }}>
-                  I agree to the <a href="#">Terms and Privacy Notice</a>.
+                <input type="checkbox" required style={{ marginTop: 3 }}  checked={agree} onChange={(e)=>setagree(e.target.checked)}/>
+                <label style={{ margin: 0, fontWeight: 400 }}>
+                  I agree to the <a href="#" onClick={(e) => setshow(true)}>Terms and Privacy Notice</a>.
                 </label>
               </div>
-
+              <div className={`popup${ show ? ' open-popup' : ''}`}>
+               <h2> CebFlora Terms & Conditions</h2>
+               <h3>Members must provide accurate information,
+                 respect the work of curators, and use plant records for learning, research, and conservation only. 
+                 Collecting or harming protected species based on information from the platform is strictly prohibited.
+                 ------update later</h3>
+              <button type="button" onClick={() => { setagree(true); setshow(false); }}> I agree </button>
+              </div>
+              
               <p className={`field-error${signup.error ? ' show' : ''}`}>{signup.error}</p>
-
               <button type="submit" className="btn btn-solid-yellow" disabled={submitting}>
                 Create account
               </button>
             </form>
-            <p className="form-note">
-              Already have an account? <a href="#" onClick={(e) => showTab(e, 'signin')}>Sign in</a>
-            </p>
+
+            
           </>
         )}
       </div>
     </div>
+    </div>
+    
   );
 }
