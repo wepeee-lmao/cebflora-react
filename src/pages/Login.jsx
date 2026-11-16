@@ -76,10 +76,10 @@ export default function Login() {
       sessionStorage.setItem('verification_flow', 'signup');
     }
   };
-
   
   const [agree, setagree]= useState(false);
   const [show, setshow]=useState(false);
+
 
   return (
     <div className="auth-page">
@@ -139,7 +139,7 @@ export default function Login() {
                 type="email" id="signup-email" required placeholder="you@email.com"
                 value={signup.email}
                 onChange={(e) => setSignup({ ...signup, email: e.target.value })}
-              />
+              />  
 
               <label htmlFor="signup-password">Password</label>
               <input
@@ -161,6 +161,7 @@ export default function Login() {
                   I agree to the <a href="#" onClick={(e) => setshow(true)}>Terms and Privacy Notice</a>.
                 </label>
               </div>
+
               <div className={`popup${ show ? ' open-popup' : ''}`}>
                <h2> CebFlora Terms & Conditions</h2>
                <h3>Members must provide accurate information,
@@ -175,13 +176,10 @@ export default function Login() {
                 Create account
               </button>
             </form>
-
-            
           </>
         )}
       </div>
     </div>
     </div>
-    
   );
 }

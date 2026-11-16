@@ -63,7 +63,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: url('../assets/icons/ceblogo.png') no-repeat center / contain;
+    background: url('../assets/icons/ceblogo.svg') no-repeat center / contain;
   }
 
   .brand-name {

@@ -81,7 +81,6 @@
     conic-gradient(from var(--a), rgb(252, 231, 0), rgb(252, 231, 0), rgb(142, 249, 41), rgb(188, 251, 0)) border-box;
 }
 
-
 .verify1{
   position: relative;
   font-size: 0.75rem;
