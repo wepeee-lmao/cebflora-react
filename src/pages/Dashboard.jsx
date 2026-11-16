@@ -124,12 +124,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* "become a curator" call-to-action for regular users only */}
-      {profile.role === 'user' && (
-        <Link to="/apply-curator" className="btn btn-primary apply-link">
-          Apply to become a Curator
-        </Link>
-      )}
     </>
   );
 }
