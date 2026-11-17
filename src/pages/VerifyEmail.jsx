@@ -48,7 +48,6 @@ export default function VerifyEmail() {
 
   return (
     <div className="auth-page">
-      <Link to="/" className="return-home">Return to Homepage</Link>
 
       <div className="auth-card">
         <Brand />

@@ -248,9 +248,3 @@
   gap: 12px;
 }
 
-/* ===== added: error messages were being stretched by the card's text-align: justify ===== */
-.auth-card .field-error {
-  text-align: left;
-  letter-spacing: normal;
-  word-spacing: normal;
-}

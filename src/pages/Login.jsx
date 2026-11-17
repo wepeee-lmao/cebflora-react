@@ -3,8 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import Brand from '../components/Brand';
 import usePageTitle from '../lib/usePageTitle';
-import '../styles/style.css';
+
 import '../styles/auth.css';
+import '../styles/style.css';
 
 // letters (any language), spaces, . ' -   e.g. "Mary Ann", "Dela Cruz", "O'Neil"
 const NAME_RE = /^[\p{L}][\p{L}\s.'-]*$/u;
@@ -126,10 +127,9 @@ export default function Login() {
       navigate('/verify-email');   // <- this line was missing
     }
   };
-
   return (
     <div className="auth-page">
-      <Link to="/" className="return-home"> Return to Homepage</Link>
+      <Link to="/login" className="return-home"> Return to Homepage</Link>
 
       <div className="auth-card">
         <Brand />
