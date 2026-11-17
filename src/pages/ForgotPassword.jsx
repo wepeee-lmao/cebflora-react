@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
-import Brand from '../components/Brand';
 import usePageTitle from '../lib/usePageTitle';
 import '../styles/auth.css';
+import '../styles/style.css';
 
 export default function ForgotPassword() {
   usePageTitle('CebFlora — Find Your Account');

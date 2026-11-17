@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardLayout from './components/DashboardLayout';
 import Landing from './pages/Landing';
+import ForgotPassword from './pages/ForgotPassword';
 import Login from './pages/Login';
 import VerifyEmail from './pages/VerifyEmail';
 import Dashboard from './pages/Dashboard';
@@ -18,7 +19,7 @@ export default function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-email" element={<VerifyEmail />} />
-      <Route path="/forgot-password" element={<ComingSoon title="Forgot password" />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
 
       {/* Signed-in users (any role) */}
       <Route element={<ProtectedRoute />}>

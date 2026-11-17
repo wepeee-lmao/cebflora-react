@@ -241,3 +241,16 @@
   top: 5px;
 }
 
+/* ===== added: first name / last name side by side ===== */
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ===== added: error messages were being stretched by the card's text-align: justify ===== */
+.auth-card .field-error {
+  text-align: left;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
