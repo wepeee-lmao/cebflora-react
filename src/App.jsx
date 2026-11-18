@@ -10,6 +10,7 @@ import SavedPlants from './pages/SavedPlants';
 import PlantDetail from './pages/PlantDetail';
 import ManagePlants from './pages/ManagePlants';
 import PlantEdit from './pages/PlantEdit';
+import UserProfile from './pages/UserProfile';
 import ComingSoon from './pages/ComingSoon';
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
           <Route path="/taxonomy" element={<ComingSoon title="Browse Taxonomy" />} />
           <Route path="/compare" element={<ComingSoon title="Compare Specimens" />} />
           <Route path="/quiz" element={<ComingSoon title="Taxonomy Quiz" />} />
-          <Route path="/profile" element={<ComingSoon title="Settings" />} />
+          <Route path="/profile" element={<UserProfile />} />
           <Route path="/apply-curator" element={<ComingSoon title="Apply to become a Curator" />} />
         </Route>
       </Route>
