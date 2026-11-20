@@ -2,15 +2,17 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardLayout from './components/DashboardLayout';
 import Landing from './pages/Landing';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Login from './pages/Login';
 import VerifyEmail from './pages/VerifyEmail';
 import Dashboard from './pages/Dashboard';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
+import SavedPlants from './pages/SavedPlants';
+import PlantDetail from './pages/PlantDetail';
+import ManagePlants from './pages/ManagePlants';
+import PlantEdit from './pages/PlantEdit';
 import ComingSoon from './pages/ComingSoon';
 import AdminApp from './admin/AdminApp';
-
-
 
 export default function App() {
   return (
@@ -22,15 +24,18 @@ export default function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/coming-soon" element={<ComingSoon />} />
+      {/* Admin interface: has its own login + admin check, and its own layout */}
       <Route path="/admin/*" element={<AdminApp />} />
+
       {/* Signed-in users (any role) */}
-      <Route element={<ProtectedRoute />}> 
+      <Route element={<ProtectedRoute />}>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/curators" element={<ComingSoon title="Platform Curators" />} />
+          <Route path="/saved" element={<SavedPlants />} />
+          <Route path="/plants/:id" element={<PlantDetail />} />
+          <Route path="/curators" element={<ComingSoon title="Community" />} />
           <Route path="/taxonomy" element={<ComingSoon title="Browse Taxonomy" />} />
           <Route path="/compare" element={<ComingSoon title="Compare Specimens" />} />
-          <Route path="/identify" element={<ComingSoon title="Identification Wizard" />} />
           <Route path="/quiz" element={<ComingSoon title="Taxonomy Quiz" />} />
           <Route path="/profile" element={<ComingSoon title="Settings" />} />
           <Route path="/apply-curator" element={<ComingSoon title="Apply to become a Curator" />} />
@@ -40,21 +45,21 @@ export default function App() {
       {/* Curators + admins only */}
       <Route element={<ProtectedRoute allowedRoles={['curator', 'admin']} />}>
         <Route element={<DashboardLayout />}>
-          <Route path="/curator-dashboard" element={<ComingSoon title="Curator Dashboard" />} />
+          <Route path="/manage" element={<ManagePlants />} />
+          <Route path="/manage/new" element={<PlantEdit />} />
+          <Route path="/manage/:id/edit" element={<PlantEdit />} />
         </Route>
       </Route>
 
       {/* Admins only */}
       <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
-        {/* The admin interface has its own layout, so it sits outside DashboardLayout */}
-        <Route path="/admin/*" element={<AdminApp />} />
-
         <Route element={<DashboardLayout />}>
           <Route path="/admin-review" element={<ComingSoon title="Curator Applications" />} />
         </Route>
       </Route>
 
-      <Route path="*" element={<h1 style={{ color: 'white' }}>No route for this URL</h1>} />
+      {/* Anything else goes home */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

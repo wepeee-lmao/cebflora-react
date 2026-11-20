@@ -28,14 +28,4 @@ variables in the project's Environment Variables settings.
 | `assets/` | `src/assets/` |
 | `sql/schema.sql` | `sql/schema.sql` (unchanged) |
 
-## Adding a new page
-
-1. Create `src/pages/Taxonomy.jsx`.
-2. In `src/App.jsx`, replace the matching `<ComingSoon />` element with your page.
-   It automatically gets the sidebar/topbar and the login check.
-3. For role-restricted pages, put the route inside
-   `<ProtectedRoute allowedRoles={['curator','admin']} />` (examples are in `App.jsx`).
-4. Read the signed-in user anywhere with `const { session, profile } = useAuth();`.
-
-The Supabase setup steps (buckets, email confirmation, schema) are the same as
-in the original README.
+## Pages to be added:

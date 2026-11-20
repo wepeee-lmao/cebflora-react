@@ -3,8 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import Brand from '../components/Brand';
 import usePageTitle from '../lib/usePageTitle';
-import '../styles/style.css';
+
 import '../styles/auth.css';
+import '../styles/style.css';
+
+// letters (any language), spaces, . ' -   e.g. "Mary Ann", "Dela Cruz", "O'Neil"
+const NAME_RE = /^[\p{L}][\p{L}\s.'-]*$/u;
 
 export default function Login() {
   usePageTitle('CebFlora — Sign In');
@@ -14,7 +18,12 @@ export default function Login() {
   const [submitting, setSubmitting] = useState(false);
 
   const [signin, setSignin] = useState({ email: '', password: '', error: '' });
-  const [signup, setSignup] = useState({ name: '', email: '', password: '', confirm: '', error: '' });
+  const [signup, setSignup] = useState({
+    first: '', last: '', email: '', password: '', confirm: '', error: '', codeSent: false,
+  });
+
+  const [agree, setagree] = useState(false);
+  const [show, setshow] = useState(false);
 
   const showTab = (e, which) => {
     e?.preventDefault();
@@ -43,8 +52,19 @@ export default function Login() {
   // ---- CREATE ACCOUNT ----
   const handleSignup = async (e) => {
     e.preventDefault();
-    setSignup((s) => ({ ...s, error: '' }));
+    setSignup((s) => ({ ...s, error: '', codeSent: false }));
 
+    const first = signup.first.trim();
+    const last = signup.last.trim();
+
+    if (!NAME_RE.test(first)) {
+      setSignup((s) => ({ ...s, error: 'Invalid first name.' }));
+      return;
+    }
+    if (!NAME_RE.test(last)) {
+      setSignup((s) => ({ ...s, error: 'Invalid last name.' }));
+      return;
+    }
     if (signup.password !== signup.confirm) {
       setSignup((s) => ({ ...s, error: "Passwords don't match." }));
       return;
@@ -58,12 +78,42 @@ export default function Login() {
     const { data, error } = await supabase.auth.signUp({
       email,
       password: signup.password,
-      options: { data: { full_name: signup.name.trim() } },
+      options: {
+        data: {
+          full_name: `${first} ${last}`,   // what the profiles table uses today
+          first_name: first,
+          last_name: last,
+        },
+      },
     });
 
     setSubmitting(false);
+
     if (error) {
+      // Supabase only allows one signup email per address every 60 seconds.
+      // That means a code was ALREADY sent, so point the user to the code page.
+      const cooldown =
+        error.status === 429 ||
+        error.code === 'over_email_send_rate_limit' ||
+        /after \d+ seconds/i.test(error.message);
+
+      if (cooldown) {
+        sessionStorage.setItem('pending_verification_email', email);
+        setSignup((s) => ({
+          ...s,
+          codeSent: true,
+          error: 'A code was already sent to this email. Check your inbox, or wait a minute before trying again.',
+        }));
+        return;
+      }
+
       setSignup((s) => ({ ...s, error: error.message }));
+      return;
+    }
+
+    // Email already has an account: Supabase returns a "user" with no identities
+    if (data.user && data.user.identities?.length === 0) {
+      setSignup((s) => ({ ...s, error: 'This email is already registered. Try signing in.' }));
       return;
     }
 
@@ -74,16 +124,12 @@ export default function Login() {
     } else {
       sessionStorage.setItem('pending_verification_email', email);
       sessionStorage.setItem('verification_flow', 'signup');
+      navigate('/verify-email');   // <- this line was missing
     }
   };
-
-  
-  const [agree, setagree]= useState(false);
-  const [show, setshow]=useState(false);
-
   return (
     <div className="auth-page">
-      <Link to="/" className="return-home"> Return to Homepage</Link>
+      <Link to="/login" className="return-home"> Return to Homepage</Link>
 
       <div className="auth-card">
         <Brand />
@@ -127,12 +173,24 @@ export default function Login() {
         ) : (
           <>
             <form onSubmit={handleSignup}>
-              <label htmlFor="signup-name">Full Name</label>
-              <input
-                type="text" id="signup-name" required placeholder="Juan Dela Cruz"
-                value={signup.name}
-                onChange={(e) => setSignup({ ...signup, name: e.target.value })}
-              />
+              <div className="name-row">
+                <div>
+                  <label htmlFor="signup-first">First Name</label>
+                  <input
+                    type="text" id="signup-first" required placeholder="Juan"
+                    value={signup.first}
+                    onChange={(e) => setSignup({ ...signup, first: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="signup-last">Last Name</label>
+                  <input
+                    type="text" id="signup-last" required placeholder="Dela Cruz"
+                    value={signup.last}
+                    onChange={(e) => setSignup({ ...signup, last: e.target.value })}
+                  />
+                </div>
+              </div>
 
               <label htmlFor="signup-email">Email Address</label>
               <input
@@ -156,32 +214,35 @@ export default function Login() {
               />
 
               <div className="checkbox-row">
-                <input type="checkbox" required style={{ marginTop: 3 }}  checked={agree} onChange={(e)=>setagree(e.target.checked)}/>
+                <input type="checkbox" required style={{ marginTop: 3 }} checked={agree} onChange={(e) => setagree(e.target.checked)} />
                 <label style={{ margin: 0, fontWeight: 400 }}>
-                  I agree to the <a href="#" onClick={(e) => setshow(true)}>Terms and Privacy Notice</a>.
+                  I agree to the{' '}
+                  <a href="#" onClick={(e) => { e.preventDefault(); setshow(true); }}>Terms and Privacy Notice</a>.
                 </label>
               </div>
-              <div className={`popup${ show ? ' open-popup' : ''}`}>
-               <h2> CebFlora Terms & Conditions</h2>
-               <h3>Members must provide accurate information,
-                 respect the work of curators, and use plant records for learning, research, and conservation only. 
-                 Collecting or harming protected species based on information from the platform is strictly prohibited.
-                 ------update later</h3>
-              <button type="button" onClick={() => { setagree(true); setshow(false); }}> I agree </button>
+
+              <div className={`popup${show ? ' open-popup' : ''}`}>
+                <h2> CebFlora Terms & Conditions</h2>
+                <h3>Members must provide accurate information,
+                  respect the work of curators, and use plant records for learning, research, and conservation only.
+                  Collecting or harming protected species based on information from the platform is strictly prohibited.
+                  ------update later</h3>
+                <button type="button" onClick={() => { setagree(true); setshow(false); }}> I agree </button>
               </div>
-              
+
               <p className={`field-error${signup.error ? ' show' : ''}`}>{signup.error}</p>
+              {signup.codeSent && (
+                <p className="form-note"><Link to="/verify-email">I already have a code</Link></p>
+              )}
+
               <button type="submit" className="btn btn-solid-yellow" disabled={submitting}>
                 Create account
               </button>
             </form>
-
-            
           </>
         )}
+        </div>
       </div>
     </div>
-    </div>
-    
   );
 }
