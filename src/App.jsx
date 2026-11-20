@@ -3,6 +3,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import DashboardLayout from './components/DashboardLayout';
 import Landing from './pages/Landing';
 import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Login from './pages/Login';
 import VerifyEmail from './pages/VerifyEmail';
 import Dashboard from './pages/Dashboard';
@@ -11,6 +12,7 @@ import PlantDetail from './pages/PlantDetail';
 import ManagePlants from './pages/ManagePlants';
 import PlantEdit from './pages/PlantEdit';
 import ComingSoon from './pages/ComingSoon';
+import AdminApp from './admin/AdminApp';
 
 export default function App() {
   return (
@@ -20,6 +22,10 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/verify-email" element={<VerifyEmail />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
+      <Route path="/coming-soon" element={<ComingSoon />} />
+      {/* Admin interface: has its own login + admin check, and its own layout */}
+      <Route path="/admin/*" element={<AdminApp />} />
 
       {/* Signed-in users (any role) */}
       <Route element={<ProtectedRoute />}>
@@ -45,6 +51,14 @@ export default function App() {
         </Route>
       </Route>
 
+      {/* Admins only */}
+      <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="/admin-review" element={<ComingSoon title="Curator Applications" />} />
+        </Route>
+      </Route>
+
+      {/* Anything else goes home */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
