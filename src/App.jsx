@@ -8,6 +8,9 @@ import Dashboard from './pages/Dashboard';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import ComingSoon from './pages/ComingSoon';
+import AdminApp from './admin/AdminApp';
+
+
 
 export default function App() {
   return (
@@ -19,10 +22,9 @@ export default function App() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/coming-soon" element={<ComingSoon />} />
-
-
+      <Route path="/admin/*" element={<AdminApp />} />
       {/* Signed-in users (any role) */}
-      <Route element={<ProtectedRoute />}>
+      <Route element={<ProtectedRoute />}> 
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/curators" element={<ComingSoon title="Platform Curators" />} />
@@ -35,7 +37,7 @@ export default function App() {
         </Route>
       </Route>
 
-      {/* Curators + admins only (example of role-restricted pages) */}
+      {/* Curators + admins only */}
       <Route element={<ProtectedRoute allowedRoles={['curator', 'admin']} />}>
         <Route element={<DashboardLayout />}>
           <Route path="/curator-dashboard" element={<ComingSoon title="Curator Dashboard" />} />
@@ -44,6 +46,9 @@ export default function App() {
 
       {/* Admins only */}
       <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+        {/* The admin interface has its own layout, so it sits outside DashboardLayout */}
+        <Route path="/admin/*" element={<AdminApp />} />
+
         <Route element={<DashboardLayout />}>
           <Route path="/admin-review" element={<ComingSoon title="Curator Applications" />} />
         </Route>
