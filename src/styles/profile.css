@@ -1,4 +1,3 @@
-
 .ps-page {
   --ps-gold: #e4b448;
   --ps-green: color-mix(in srgb, var(--color-accent-lime) 70%, var(--color-bg-green));
@@ -122,6 +121,51 @@
 .ps-field input:focus-visible, .ps-field textarea:focus-visible {
   outline: 2px solid var(--color-accent-dyellow); outline-offset: 1px;
 }
+
+/* ---------- Loading, messages, delete account ---------- */
+.ps-state { max-width: 34rem; margin: 3rem auto; text-align: center; color: var(--color-text-muted); }
+.ps-state h1 { margin: 0 0 0.5rem; font-size: 1.6rem; color: var(--color-accent-ygreen); }
+.ps-state p { margin: 0 0 1rem; }
+
+.ps-notice {
+  margin: 0 0 1rem; padding: 0.6rem 0.9rem; border-radius: 10px;
+  font-size: 0.85rem; font-weight: 700; border: 1px solid var(--ps-line); background: var(--ps-card);
+}
+.ps-notice.ok { color: var(--ps-green); border-color: var(--ps-green); }
+.ps-notice.error { color: #ffb4b4; border-color: #e07a7a; }
+
+.ps-outline:disabled, .ps-camera:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.ps-security-row h3.ps-danger-title { color: #ff9b9b; }
+.ps-danger { color: #ff9b9b; border-color: #e07a7a; }
+.ps-danger:hover { background: rgba(224, 122, 122, 0.15); }
+.ps-danger-solid { background: #b3261e; border-color: #b3261e; color: #fff; }
+.ps-danger-solid:hover:not(:disabled) { background: #c9302a; }
+.ps-danger:focus-visible, .ps-danger-solid:focus-visible {
+  outline: 2px solid var(--color-accent-dyellow); outline-offset: 2px;
+}
+
+.ps-overlay {
+  position: fixed; inset: 0; z-index: 1000; padding: 1.5rem;
+  display: grid; place-items: center; background: rgba(0, 0, 0, 0.7);
+}
+.ps-modal {
+  width: min(28rem, 100%); padding: 1.5rem;
+  background: var(--color-bg-green); color: var(--color-text-light);
+  border: 1px solid var(--ps-line); border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.ps-modal h2 { margin: 0 0 0.6rem; font-size: 1.3rem; color: #ff9b9b; }
+.ps-modal p { margin: 0 0 1rem; line-height: 1.5; font-size: 0.9rem; }
+.ps-modal .ps-notice { font-size: 0.85rem; }
+.ps-modal label { display: block; margin-bottom: 0.3rem; font-size: 0.8rem; }
+.ps-modal input {
+  width: 100%; margin-bottom: 1rem; font: inherit; font-size: 1.05rem; color: #fff;
+  background: rgba(0, 0, 0, 0.35); border: 1px solid var(--color-accent-dyellow);
+  border-radius: 4px; padding: 0.55rem 0.7rem;
+}
+.ps-modal input:focus-visible { outline: 2px solid var(--color-accent-dyellow); outline-offset: 1px; }
+.ps-modal .ps-btn-row { justify-content: flex-end; }
 
 /* ---------- Tablet and phone ---------- */
 @media (max-width: 900px) {

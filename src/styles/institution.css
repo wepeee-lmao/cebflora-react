@@ -1,0 +1,124 @@
+
+
+.ip-page {
+  --ip-green: color-mix(in srgb, var(--color-accent-lime) 70%, var(--color-bg-green));
+  --ip-line: rgba(255, 255, 255, 0.3);
+  --ip-card: rgba(10, 26, 14, 0.4);
+  --ip-panel: linear-gradient(120deg, #38453f 0%, #3a4d42 100%);
+  --ip-pad: 1.5rem 2rem 3rem;
+  min-height: 100%;
+  background: var(--ip-panel);
+  border-radius: 18px;
+  color: var(--color-text-light);
+  padding: var(--ip-pad);
+}
+
+.ip-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  gap: 2.25rem;
+  align-items: start;
+}
+
+/* ---------- Headings, cards, buttons ---------- */
+.ip-heading {
+  margin: 0 0 0.75rem; text-align: right;
+  font-size: 1.9rem; font-weight: 700; line-height: 1.1;
+  color: var(--color-accent-ygreen);
+}
+.ip-card {
+  background: var(--ip-card); border: 1px solid var(--ip-line);
+  border-radius: 18px; padding: 1.5rem 1.6rem;
+}
+.ip-card-title { margin: 0 0 1rem; font-size: 1.3rem; font-weight: 700; color: var(--color-card-bg); }
+
+.ip-outline {
+  display: inline-block; text-align: center; text-decoration: none; cursor: pointer;
+  font: inherit; font-size: 0.85rem; font-weight: 700;
+  color: var(--ip-green); background: transparent; border: 1px solid var(--ip-green);
+  border-radius: 10px; padding: 0.55rem 0.9rem;
+}
+.ip-outline:hover { background: rgba(255, 255, 255, 0.07); }
+.ip-block { display: block; width: 100%; }
+
+/* ---------- Left: logo and facts ---------- */
+.ip-summary { text-align: center; padding-top: 0.5rem; }
+.ip-logo {
+  width: 156px; height: 156px; margin: 0 auto 1.25rem; border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center;
+  background: #fff; color: var(--color-bg-green);
+  font-size: 3rem; font-weight: 700; letter-spacing: 0.02em;
+  border: 4px solid var(--ip-green);
+}
+.ip-logo img { width: 100%; height: 100%; object-fit: contain; padding: 14px; display: block; }
+.ip-name { margin: 0; font-size: 1.8rem; font-weight: 700; line-height: 1.2; color: var(--color-card-bg); overflow-wrap: anywhere; }
+.ip-location { margin: 0.35rem 0 1.25rem; color: var(--color-text-muted); }
+
+.ip-stats { margin: 0 0 1.25rem; padding: 0; }
+.ip-stats > div {
+  display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.75rem; border-top: 1px solid var(--ip-line); font-size: 0.78rem;
+}
+.ip-stats > div:last-child { border-bottom: 1px solid var(--ip-line); }
+.ip-stats dt { color: var(--color-text-muted); text-align: left; }
+.ip-stats dd { margin: 0; font-weight: 700; color: #fff; text-align: right; }
+
+/* ---------- Right: picture and short information ---------- */
+.ip-cover { margin: 0 0 1.1rem; aspect-ratio: 16 / 7; border-radius: 14px; overflow: hidden; background: rgba(0, 0, 0, 0.25); }
+.ip-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ip-cover-empty {
+  width: 100%; height: 100%; display: grid; place-items: center;
+  color: var(--color-text-muted); font-size: 0.9rem;
+  background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0 14px, transparent 14px 28px);
+}
+.ip-about { margin: 0; line-height: 1.6; max-width: 70ch; }
+
+/* ---------- Bottom: published plants ---------- */
+.ip-plants { margin-top: 2.25rem; }
+.ip-plant-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem;
+}
+.ip-plant {
+  display: block; height: 100%; overflow: hidden; text-decoration: none; color: inherit;
+  background: var(--ip-card); border: 1px solid var(--ip-line); border-radius: 16px;
+}
+.ip-plant:hover { border-color: var(--color-accent-dyellow); }
+.ip-plant-photo {
+  aspect-ratio: 4 / 3; display: grid; place-items: center; font-size: 2.2rem;
+  background: rgba(0, 0, 0, 0.25);
+}
+.ip-plant-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ip-plant-body { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.8rem 0.9rem 0.95rem; }
+.ip-plant-body strong { font-size: 1.05rem; color: var(--color-card-bg); }
+.ip-plant-body em { font-size: 0.85rem; color: var(--color-text-muted); }
+.ip-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.4rem; }
+.ip-tags span {
+  font-size: 0.72rem; padding: 0.15rem 0.6rem; border-radius: 999px;
+  background: var(--ip-green); color: var(--color-bg-green);
+}
+.ip-empty, .ip-more { margin: 0; color: var(--color-text-muted); }
+.ip-empty { padding: 1.5rem; text-align: center; border: 1px dashed var(--ip-line); border-radius: 16px; }
+.ip-more { margin-top: 1rem; text-align: center; font-size: 0.85rem; }
+
+/* ---------- Loading, error, not found ---------- */
+.ip-state { max-width: 34rem; margin: 3rem auto; text-align: center; }
+.ip-state h1 { margin: 0 0 0.5rem; font-size: 1.6rem; color: var(--color-accent-ygreen); }
+.ip-state p { margin: 0 0 1rem; color: var(--color-text-muted); }
+.ip-state-hint { font-size: 0.85rem; }
+
+.ip-outline:focus-visible, .ip-plant:focus-visible {
+  outline: 2px solid var(--color-accent-dyellow); outline-offset: 2px;
+}
+
+/* ---------- Tablet and phone ---------- */
+@media (max-width: 900px) {
+  .ip-page { --ip-pad: 1.25rem 1rem 2.5rem; }
+  .ip-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .ip-summary { max-width: 340px; margin: 0 auto; width: 100%; }
+  .ip-heading { text-align: left; }
+}
+@media (max-width: 640px) {
+  .ip-plant-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .ip-card { padding: 1.1rem; }
+}

@@ -12,6 +12,8 @@ import ManagePlants from './pages/ManagePlants';
 import PlantEdit from './pages/PlantEdit';
 import UserProfile from './pages/UserProfile';
 import ComingSoon from './pages/ComingSoon';
+import MyBookmarkedPlants from './pages/MyBookmarkedPlants';
+import InstitutionProfile from './pages/InstitutionProfile';
 
 export default function App() {
   return (
@@ -34,6 +36,8 @@ export default function App() {
           <Route path="/quiz" element={<ComingSoon title="Taxonomy Quiz" />} />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/apply-curator" element={<ComingSoon title="Apply to become a Curator" />} />
+          <Route path="/my-bookmarked-plants" element={<MyBookmarkedPlants />} />
+          <Route path="/institution-profile" element={<InstitutionProfile />} />
         </Route>
       </Route>
 
