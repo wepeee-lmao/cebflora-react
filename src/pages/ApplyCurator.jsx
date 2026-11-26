@@ -147,12 +147,7 @@ export default function ApplyCurator() {
 
     setSubmitting(true);
     try {
-      // TODO: send the application to your backend. With Supabase this is usually:
-      //   1. upload each file to a private storage bucket (e.g. 'curator-documents'):
-      //        await supabase.storage.from('curator-documents').upload(`${userId}/${file.name}`, file)
-      //   2. insert one row into a 'curator_applications' table with the form values,
-      //      the stored file paths and status = 'pending'.
-      // Keep the bucket private so only developers/admins can open the documents.
+     
       await new Promise((resolve) => setTimeout(resolve, 600)); // placeholder for the request
       setSubmitted(true);
       window.scrollTo({ top: 0 });
