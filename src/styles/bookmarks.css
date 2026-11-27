@@ -1,0 +1,80 @@
+/* src/styles/bookmarks.css
+   Styles for src/pages/MyBookmarkedPlants.jsx (page content only).
+   The sidebar and top bar come from DashboardLayout (styled in dashboard.css).
+   Every class is prefixed "bm-" so it cannot clash with other pages.
+
+   The page sits inside .content-area, which already adds 30px 32px 48px of
+   padding, so the panel below shows as a rounded card. Tune it here:
+     --bm-panel  the card behind the page. Use `transparent` to let the layout's
+                 leaf background show through instead.
+     --bm-pad    the space inside the card. */
+
+.bm-page {
+  --bm-green: color-mix(in srgb, var(--color-accent-lime) 70%, var(--color-bg-green));
+  --bm-line: rgba(255, 255, 255, 0.3);
+  --bm-panel: linear-gradient(120deg, #38453f 0%, #3a4d42 100%);
+  --bm-pad: 1.5rem 2rem 3rem;
+  min-height: 100%;
+  background: var(--bm-panel);
+  border-radius: 18px;
+  color: var(--color-text-light);
+  padding: var(--bm-pad);
+}
+
+.bm-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.bm-heading { margin: 0; font-size: 1.9rem; font-weight: 700; color: var(--color-accent-ygreen); }
+.bm-back {
+  background: transparent; cursor: pointer; font: inherit; font-size: 0.85rem; font-weight: 700;
+  color: var(--bm-green); border: 1px solid var(--bm-green); border-radius: 10px; padding: 0.45rem 0.9rem;
+}
+.bm-back:hover { background: rgba(255, 255, 255, 0.07); }
+.bm-count { margin: 1.25rem 0 1rem; font-weight: 700; font-size: 1.1rem; color: #fff; }
+
+/* ---------- Grid of cards ---------- */
+.bm-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;
+}
+.bm-card { position: relative; background: #0a2409; border-radius: 16px; overflow: hidden; }
+.bm-link { display: block; color: inherit; text-decoration: none; }
+.bm-img { aspect-ratio: 233 / 129; background: #cfeaff; overflow: hidden; border-radius: 16px; }
+.bm-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bm-img-placeholder {
+  width: 100%; height: 100%;
+  background:
+    radial-gradient(ellipse 60% 35% at 50% 125%, #8aa300 98%, transparent 100%),
+    linear-gradient(#bfe6ff, #eaf7ff);
+}
+.bm-body { padding: 0.9rem 1.1rem 1.1rem; }
+.bm-body h3 { margin: 0; font-size: 1.15rem; font-weight: 700; color: #fff; }
+.bm-sci { margin: 0.15rem 0 0.7rem; font-style: italic; font-size: 0.85rem; color: var(--color-text-muted); }
+.bm-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.bm-tags span {
+  background: #7d9e5c; color: #000; font-size: 0.7rem; padding: 0.15rem 0.6rem; border-radius: 999px;
+}
+
+.bm-remove {
+  position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; cursor: pointer;
+  display: grid; place-items: center; border-radius: 50%; border: 0;
+  background: rgba(10, 26, 14, 0.75); color: #fff; font-size: 0.8rem;
+}
+.bm-remove:hover { background: rgba(160, 30, 30, 0.9); }
+
+/* ---------- Empty state ---------- */
+.bm-empty {
+  margin-top: 2rem; padding: 2.5rem 1.5rem; text-align: center;
+  background: rgba(10, 26, 14, 0.4); border: 1px solid var(--bm-line); border-radius: 18px;
+}
+.bm-empty p { margin: 0 0 1rem; color: var(--color-text-muted); }
+.bm-browse {
+  display: inline-block; font-weight: 700; text-decoration: none;
+  color: var(--color-bg-green); background: var(--bm-green); border-radius: 10px; padding: 0.55rem 1.1rem;
+}
+
+.bm-back:focus-visible, .bm-remove:focus-visible, .bm-browse:focus-visible, .bm-link:focus-visible {
+  outline: 2px solid var(--color-accent-dyellow); outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .bm-page { --bm-pad: 1.25rem 1rem 2.5rem; }
+}

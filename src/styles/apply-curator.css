@@ -1,0 +1,137 @@
+
+.ac-page {
+  --ac-ink: #0d2b17;
+  --ac-text: #2b2b2b;
+  --ac-orange: #ffbd59;
+  --ac-orange-soft: #fddca8;
+  --ac-orange-ink: #a07a10;
+  --ac-mint: #e0eed3;
+  --ac-green: #7a9660;
+  --ac-line: #d8dfd0;
+  min-height: 100vh;
+  padding: 2rem 1rem 3rem;
+  display: flex; justify-content: center; align-items: flex-start;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0 2px, transparent 3px) 0 0 / 56px 56px,
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.04) 0 3px, transparent 4px) 0 0 / 84px 84px,
+    linear-gradient(90deg, #020a04 0%, #04140a 55%, #02170a 100%);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.ac-card {
+  width: 100%; max-width: 820px; box-sizing: border-box;
+  background: #fff; color: var(--ac-text);
+  border-radius: 10px; padding: 1.5rem 2.75rem 2.25rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Brand header ---------- */
+.ac-brand { display: flex; align-items: center; gap: 1.1rem; margin-bottom: 1.5rem; }
+.ac-logo { width: 72px; height: 72px; flex: none; }
+.ac-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ac-brand-name { margin: 0; font: 1.6rem Georgia, 'Times New Roman', serif; color: var(--ac-ink); line-height: 1.1; }
+.ac-brand-sub { margin: 0.15rem 0 0; font: 0.72rem Georgia, 'Times New Roman', serif; color: #000; }
+
+/* ---------- Titles ---------- */
+.ac-eyebrow {
+  margin: 0 0 0.4rem; text-align: center; text-transform: uppercase;
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; color: var(--ac-orange);
+}
+.ac-title {
+  margin: 0 0 0.9rem; text-align: center;
+  font: 700 2rem Georgia, 'Times New Roman', serif; color: var(--ac-ink); line-height: 1.2;
+}
+.ac-lead { margin: 0 auto 1.5rem; max-width: 640px; text-align: center; font-size: 1.02rem; line-height: 1.6; letter-spacing: 0.01em; }
+
+/* ---------- Form groups ---------- */
+.ac-group { margin: 0 0 1.5rem; padding: 0; border: 0; min-width: 0; }
+.ac-group legend {
+  padding: 0 0 0.5rem; margin-bottom: 0.9rem; width: 100%;
+  font: 700 1.15rem Georgia, 'Times New Roman', serif; color: var(--ac-ink);
+  border-bottom: 2px solid var(--ac-mint);
+}
+.ac-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+.ac-field { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.ac-wide { grid-column: 1 / -1; }
+.ac-field label { font-size: 0.82rem; font-weight: 600; color: var(--ac-ink); }
+.ac-field input, .ac-field select, .ac-field textarea {
+  width: 100%; box-sizing: border-box; font: inherit; font-size: 0.98rem; color: var(--ac-text);
+  background: #fff; border: 1px solid #b9c4ae; border-radius: 8px; padding: 0.6rem 0.75rem;
+}
+.ac-field textarea { resize: vertical; min-height: 6rem; }
+.ac-field input:focus-visible, .ac-field select:focus-visible, .ac-field textarea:focus-visible {
+  outline: 2px solid var(--ac-orange); outline-offset: 1px; border-color: var(--ac-orange);
+}
+.ac-field [aria-invalid='true'] { border-color: #d93a3a; background: #fff6f6; }
+.ac-error { color: #d93a3a; font-size: 0.8rem; font-weight: 600; }
+.ac-hint { margin: 0 0 0.9rem; font-size: 0.9rem; color: #555; line-height: 1.5; }
+
+/* ---------- File upload ---------- */
+.ac-drop {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  padding: 1.6rem 1rem; text-align: center; cursor: pointer;
+  background: #f6faf1; border: 2px dashed var(--ac-green); border-radius: 14px;
+  color: var(--ac-ink);
+}
+.ac-drop:hover, .ac-drop-active { background: var(--ac-mint); }
+.ac-drop:focus-within { outline: 2px solid var(--ac-orange); outline-offset: 2px; }
+.ac-drop input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.ac-drop-icon { font-size: 1.3rem; color: var(--ac-green); }
+
+.ac-files { list-style: none; margin: 0.8rem 0 0.4rem; padding: 0; display: grid; gap: 0.5rem; }
+.ac-files li {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.55rem 0.9rem; background: var(--ac-mint); border-radius: 999px; font-size: 0.9rem;
+}
+.ac-file-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; color: var(--ac-ink); }
+.ac-file-size { color: #555; font-size: 0.8rem; }
+.ac-files button {
+  width: 26px; height: 26px; flex: none; cursor: pointer; border: 0; border-radius: 50%;
+  background: #fff; color: var(--ac-ink); font-size: 0.75rem;
+}
+.ac-files button:hover { background: #ffd6d6; }
+.ac-files button:focus-visible { outline: 2px solid var(--ac-orange); }
+
+/* ---------- Buttons ---------- */
+.ac-actions { display: flex; gap: 0.75rem; margin-top: 1.75rem; }
+.ac-primary, .ac-secondary {
+  cursor: pointer; font: 700 1rem system-ui, sans-serif; border-radius: 999px; padding: 0.8rem 1.25rem;
+}
+.ac-primary { flex: 1; width: 100%; color: #fff; background: var(--ac-orange); border: 0; letter-spacing: 0.02em; }
+.ac-primary:hover { filter: brightness(0.97); }
+.ac-primary:disabled { opacity: 0.6; cursor: wait; }
+.ac-secondary { color: var(--ac-ink); background: #fff; border: 2px solid var(--ac-mint); padding: 0.8rem 1.6rem; }
+.ac-secondary:hover { background: var(--ac-mint); }
+.ac-primary:focus-visible, .ac-secondary:focus-visible { outline: 3px solid var(--ac-ink); outline-offset: 2px; }
+
+/* ---------- Confirmation ---------- */
+.ac-done { text-align: center; padding-bottom: 2rem; }
+.ac-done .ac-brand { text-align: left; }
+.ac-check { display: flex; justify-content: center; margin: 0.5rem 0 0.9rem; }
+.ac-notice {
+  display: flex; gap: 0.6rem; align-items: flex-start; text-align: left;
+  margin: 0 0 1.75rem; padding: 1.5rem 2.25rem; background: var(--ac-mint); border-radius: 36px;
+  font-size: 1.02rem; line-height: 1.5; letter-spacing: 0.01em;
+}
+.ac-notice p { margin: 0; }
+.ac-mail { font-size: 1.7rem; line-height: 1; color: #000; }
+.ac-email { overflow-wrap: anywhere; }
+.ac-approved { color: var(--ac-green); font-weight: 700; }
+.ac-declined { color: #f03c3c; font-weight: 700; }
+
+.ac-steps { list-style: none; margin: 0 0 2.25rem; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+.ac-step {
+  padding: 0.6rem 2.2rem; border-radius: 999px; background: var(--ac-mint);
+  font: 700 0.95rem Georgia, 'Times New Roman', serif; color: var(--ac-ink);
+}
+.ac-step-current { background: var(--ac-orange-soft); color: var(--ac-orange-ink); }
+
+/* ---------- Phone ---------- */
+@media (max-width: 640px) {
+  .ac-card { padding: 1.25rem 1.25rem 1.75rem; }
+  .ac-fields { grid-template-columns: 1fr; }
+  .ac-title { font-size: 1.6rem; }
+  .ac-notice { border-radius: 24px; padding: 1.1rem 1.25rem; }
+  .ac-step { padding: 0.55rem 1.4rem; }
+  .ac-actions { flex-direction: column-reverse; }
+}

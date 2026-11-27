@@ -1,0 +1,191 @@
+.ps-page {
+  --ps-gold: #e4b448;
+  --ps-green: color-mix(in srgb, var(--color-accent-lime) 70%, var(--color-bg-green));
+  --ps-line: rgba(255, 255, 255, 0.3);
+  --ps-card: rgba(10, 26, 14, 0.4);
+  --ps-ring: #38453f; /* colour of the ring around the camera button; match --ps-panel */
+  --ps-panel: #14251a;
+  --ps-pad: 1.5rem 2rem 3rem;
+  min-height: 100%;
+  background: var(--ps-panel);
+  color: var(--color-text-light);
+  padding: var(--ps-pad);
+}
+
+.ps-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  gap: 2.25rem;
+  align-items: start;
+}
+
+/* ---------- Headings and cards ---------- */
+.ps-heading {
+  margin: 0 0 0.75rem; text-align: right;
+  font-size: 1.9rem; font-weight: 700; line-height: 1.1;
+  color: var(--color-accent-ygreen);
+}
+.ps-card {
+  background: var(--ps-card); border: 1px solid var(--ps-line);
+  border-radius: 18px; padding: 1.5rem 1.6rem;
+}
+.ps-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.ps-card-head h2 { margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--color-card-bg); }
+
+.ps-outline {
+  background: transparent; cursor: pointer; font: inherit; font-size: 0.85rem; font-weight: 700;
+  color: var(--ps-green); border: 1px solid var(--ps-green);
+  border-radius: 10px; padding: 0.45rem 0.9rem;
+}
+.ps-outline:hover { background: rgba(255, 255, 255, 0.07); }
+.ps-filled { background: var(--ps-green); color: var(--color-bg-green); }
+.ps-filled:hover { background: var(--ps-green); filter: brightness(1.08); }
+.ps-btn-row { display: flex; gap: 0.5rem; }
+
+/* ---------- Left: summary ---------- */
+.ps-summary { text-align: center; padding-top: 0.5rem; }
+.ps-avatar-wrap { position: relative; width: 156px; height: 156px; margin: 0 auto 1.25rem; }
+.ps-avatar {
+  width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  display: grid; place-items: center;
+  background: var(--ps-gold); color: #000;
+  font-size: 3.4rem; font-weight: 700; letter-spacing: 0.02em;
+}
+.ps-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ps-camera {
+  position: absolute; right: 2px; bottom: 6px; width: 34px; height: 34px;
+  display: grid; place-items: center; border-radius: 50%; cursor: pointer;
+  background: var(--ps-green); color: #0a1a0e; border: 3px solid var(--ps-ring);
+}
+.ps-name { margin: 0; font-size: 2.2rem; font-weight: 700; color: var(--color-card-bg); line-height: 1.15; }
+.ps-role { margin: 0.35rem 0 0; font-weight: 700; color: var(--ps-green); }
+.ps-org { margin: 0.2rem 0 1.25rem; color: var(--color-text-muted); }
+
+.ps-stats { margin: 0 0 1.25rem; padding: 0; }
+.ps-stats > div {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.7rem 0.75rem; border-top: 1px solid var(--ps-line); font-size: 0.78rem;
+}
+.ps-stats > div:last-child { border-bottom: 1px solid var(--ps-line); }
+.ps-stats dt { color: var(--color-text-muted); }
+.ps-stats dt a { color: inherit; text-decoration: underline; }
+.ps-stats dd { margin: 0; font-weight: 700; color: #fff; }
+
+.ps-bookmarks {
+  width: 100%; cursor: pointer; font: inherit; font-weight: 700; margin-bottom: 0.6rem;
+  color: var(--color-bg-green); background: var(--ps-green);
+  border: 1px solid var(--ps-green); border-radius: 14px; padding: 0.9rem 1rem;
+}
+.ps-bookmarks:hover { filter: brightness(1.08); }
+.ps-apply {
+  width: 100%; cursor: pointer; font: inherit; font-weight: 700;
+  color: var(--color-accent-yellow); background: var(--ps-card);
+  border: 1px solid var(--ps-line); border-radius: 14px; padding: 0.9rem 1rem;
+}
+.ps-apply:hover { background: rgba(10, 26, 14, 0.55); }
+.ps-verified {
+  width: 78%; margin: 0.6rem auto 0; display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 0.5rem 1rem; border-radius: 14px; border: 1px solid var(--ps-line);
+  background: var(--ps-card); color: var(--color-text-muted); font-weight: 700; font-size: 1.15rem;
+  opacity: 0.75;
+}
+.ps-verified svg { color: var(--ps-green); opacity: 0.8; }
+
+/* ---------- Right: details form ---------- */
+.ps-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.25rem; }
+.ps-field { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.ps-wide { grid-column: 1 / -1; }
+.ps-field label { font-size: 0.78rem; color: #fff; }
+.ps-field input, .ps-field textarea {
+  width: 100%; font: inherit; font-size: 1.05rem; color: #fff;
+  background: rgba(0, 0, 0, 0.22); border: 1px solid var(--ps-line);
+  border-radius: 4px; padding: 0.55rem 0.7rem; resize: vertical;
+}
+.ps-field textarea { font-size: 0.8rem; font-weight: 700; min-height: 4.5rem; }
+.ps-field input:disabled, .ps-field textarea:disabled { opacity: 1; cursor: default; -webkit-text-fill-color: #fff; }
+.ps-field input:not(:disabled), .ps-field textarea:not(:disabled) {
+  border-color: var(--color-accent-dyellow); background: rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Security ---------- */
+.ps-security { margin-top: 2rem; }
+.ps-security-card { padding: 1rem 1.4rem; }
+.ps-security-row { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; padding: 0.5rem 0; }
+.ps-security-row h3 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--color-accent-ygreen); }
+.ps-security-row p { margin: 0.15rem 0 0; font-size: 0.72rem; font-weight: 700; color: var(--color-text-muted); }
+.ps-security-row .ps-outline { min-width: 8.5rem; }
+
+.ps-camera:focus-visible, .ps-outline:focus-visible, .ps-apply:focus-visible, .ps-bookmarks:focus-visible, .ps-stats a:focus-visible {
+  outline: 2px solid var(--color-accent-dyellow); outline-offset: 2px;
+}
+.ps-field input:focus-visible, .ps-field textarea:focus-visible {
+  outline: 2px solid var(--color-accent-dyellow); outline-offset: 1px;
+}
+
+/* ---------- Loading, messages, delete account ---------- */
+.ps-state { max-width: 34rem; margin: 3rem auto; text-align: center; color: var(--color-text-muted); }
+.ps-state h1 { margin: 0 0 0.5rem; font-size: 1.6rem; color: var(--color-accent-ygreen); }
+.ps-state p { margin: 0 0 1rem; }
+
+.ps-notice {
+  margin: 0 0 1rem; padding: 0.6rem 0.9rem; border-radius: 10px;
+  font-size: 0.85rem; font-weight: 700; border: 1px solid var(--ps-line); background: var(--ps-card);
+}
+.ps-notice.ok { color: var(--ps-green); border-color: var(--ps-green); }
+.ps-notice.error { color: #ffb4b4; border-color: #e07a7a; }
+
+.ps-outline:disabled, .ps-camera:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.ps-security-row h3.ps-danger-title { color: #ff9b9b; }
+.ps-danger { color: #ff9b9b; border-color: #e07a7a; }
+.ps-danger:hover { background: rgba(224, 122, 122, 0.15); }
+.ps-danger-solid { background: #b3261e; border-color: #b3261e; color: #fff; }
+.ps-danger-solid:hover:not(:disabled) { background: #c9302a; }
+.ps-danger:focus-visible, .ps-danger-solid:focus-visible {
+  outline: 2px solid var(--color-accent-dyellow); outline-offset: 2px;
+}
+
+.ps-overlay {
+  position: fixed; inset: 0; z-index: 1000; padding: 1.5rem;
+  display: grid; place-items: center; background: rgba(0, 0, 0, 0.7);
+}
+.ps-modal {
+  width: min(28rem, 100%); padding: 1.5rem;
+  background: var(--color-bg-green); color: var(--color-text-light);
+  border: 1px solid var(--ps-line); border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.ps-modal h2 { margin: 0 0 0.6rem; font-size: 1.3rem; color: #ff9b9b; }
+.ps-modal p { margin: 0 0 1rem; line-height: 1.5; font-size: 0.9rem; }
+.ps-modal .ps-notice { font-size: 0.85rem; }
+.ps-modal label { display: block; margin-bottom: 0.3rem; font-size: 0.8rem; }
+.ps-modal input {
+  width: 100%; margin-bottom: 1rem; font: inherit; font-size: 1.05rem; color: #fff;
+  background: rgba(0, 0, 0, 0.35); border: 1px solid var(--color-accent-dyellow);
+  border-radius: 4px; padding: 0.55rem 0.7rem;
+}
+.ps-modal input:focus-visible { outline: 2px solid var(--color-accent-dyellow); outline-offset: 1px; }
+.ps-modal .ps-btn-row { justify-content: flex-end; }
+
+/* ---------- Tablet and phone ---------- */
+@media (max-width: 900px) {
+  .ps-page { --ps-pad: 1.25rem 1rem 2.5rem; }
+  .ps-grid { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .ps-summary { max-width: 340px; margin: 0 auto; width: 100%; }
+  .ps-heading { text-align: left; }
+}
+@media (max-width: 640px) {
+  .ps-fields { grid-template-columns: 1fr; }
+  .ps-security-row { flex-direction: column; align-items: flex-start; }
+  .ps-security-row .ps-outline { width: 100%; }
+  .ps-card-head { flex-wrap: wrap; gap: 0.75rem; }
+}
+
+/* ---------- Plain background behind the profile page ----------
+   Removes the layout's background picture on every ancestor of .ps-page
+   (only while this page is mounted) and uses a solid color instead. */
+:has(> .ps-page),
+:has(.ps-page) {
+  background-image: none !important;
+  background-color: #14251a !important;
+}
